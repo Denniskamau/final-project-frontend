@@ -1,0 +1,29 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.form-heading {
+  font-weight: 300;
+}
+
+.bg-image {
+  background-image: url('../images/background.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.reg-body {
+  height: 100vh;
+  min-height: 500px;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}

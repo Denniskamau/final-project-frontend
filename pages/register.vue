@@ -1,101 +1,69 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column is-4 is-offset-4">
-          <h2 class="title has-text-centered has-text-white">Register!</h2>
-
-          <Notification :message="error" v-if="error"/>
-
-          <form method="post" @submit.prevent="register">
-            <div class="field">
-              <label class="label has-text-white">Username</label>
-              <div class="control">
-                <input
-                  type="text"
-                  class="input"
-                  name="username"
-                  v-model="name"
-                  required
-                >
-              </div>
-            </div>
-            <div class="field">
-              <label class="label has-text-white" >Email</label>
-              <div class="control">
-                <input
-                  type="email"
-                  class="input"
-                  name="email"
-                  v-model="email"
-                  required
-                >
-              </div>
-            </div>
-            <div class="field">
-              <label class="label has-text-white" >Password</label>
-              <div class="control">
-                <input
-                  type="password"
-                  class="input"
-                  name="password"
-                  v-model="password"
-                  required
-                >
-              </div>
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-dark is-fullwidth">Register</button>
-            </div>
-          </form>
-
-          <div class="has-text-centered" style="margin-top: 20px">
-            Already got an account? <nuxt-link to="/login">Login</nuxt-link>
-          </div>
-        </div>
+<div class="columns is-centered" >
+    <form @submit.prevent="LOGIN()" class="column is-one-fifth">
+    <div class="field">
+      <label class="label">Business Name</label>
+      <div class="control">
+        <input class="input is-rounded" type="text" placeholder="Business name">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
       </div>
     </div>
-  </section>
+
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control has-icons-left ">
+        <input class="input is-rounded " type="email" placeholder="Email input" >
+        <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control has-icons-left ">
+        <input class="input is-rounded" type="password" placeholder="Password input" >
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Confirm Password</label>
+      <div class="control has-icons-left ">
+        <input class="input is-rounded" type="password" placeholder="Password input" >
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox">
+            I agree to the <a href="#">terms and conditions</a>
+          </label>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-link is-rounded">Submit</button>
+        </div>
+    </div>
+  </form>
+</div>
 </template>
 
 <script>
-import Notification from '~/components/Notification'
-
 export default {
-  components: {
-    Notification,
-  },
-
+  name: 'Signup',
   data() {
     return {
-      name: '',
-      email: '',
-      password: '',
-      error: null
-    }
+      signup: {},
+    };
   },
-
-  methods: {
-    async register() {
-      try {
-        await this.$axios.post('auth/register', {
-          name: this.name,
-          email: this.email,
-          password: this.password
-        })
-
-        await this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password
-          },
-        })
-
-        this.$router.push('/dashboard')
-      } catch (e) {
-        this.error = e.response.data.message
-      }
-    }
-  }
 }
 </script>
+
+<style>
+
+</style>

@@ -21,12 +21,17 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: '~/components/Loading.vue',
+  loading: false,
 
   /*
   ** Global CSS
   */
   css: [
+    // CSS file in the project
+    //{ src: '~assets/css/forms.css', lang: 'css' },
+     '@/assets/css/forms.css',
+     '@/assets/css/main.css'
+
   ],
 
   /*
@@ -43,7 +48,7 @@ module.exports = {
     '@nuxtjs/axios',
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
-    '@nuxtjs/auth'
+
   ],
   /*
   ** Axios module configuration
@@ -71,13 +76,14 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    postcss: {
-      preset: {
-        features: {
-          customProperties: false
-        }
-      }
-    },
+    extractCSS: true,
+    // postcss: {
+    //   preset: {
+    //     features: {
+    //       customProperties: false
+    //     }
+    //   }
+    // },
     /*
     ** You can extend webpack config here
     */
