@@ -1,13 +1,15 @@
 <template>
-<div class="columns is-centered" >
-    <form @submit.prevent="LOGIN()" class="column is-one-fifth">
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-4 is-offset-4">
+        <h2 class="title has-text-centered">Register!</h2>
+
+         <form @submit.prevent="register">
     <div class="field">
       <label class="label">Business Name</label>
       <div class="control">
         <input class="input is-rounded" type="text" placeholder="Business name">
-        <span class="icon is-small is-left">
-          <i class="fas fa-user"></i>
-        </span>
       </div>
     </div>
 
@@ -50,7 +52,13 @@
         </div>
     </div>
   </form>
-</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 </template>
 
 <script>
