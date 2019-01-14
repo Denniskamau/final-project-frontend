@@ -70,7 +70,7 @@ export default {
       //console.log(`login details ${JSON.stringify(this.loginData)}`)
       this.$store.dispatch('LOGIN_REQUEST', this.loginData, { module: 'auth' })
         .then(() => {
-          this.$router.push('/register/personal');
+          this.$router.push('/dashboard');
         })
         .catch(error => error);
     }
