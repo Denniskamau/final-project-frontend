@@ -3,7 +3,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-4 is-offset-4">
-        <h2 class="title has-text-centered">Register!</h2>
+        <h2 class="title has-text-centered has-text-success has-text-weight-bold ">Register!</h2>
 
     <form @submit.prevent="register">
     <div class="field">
@@ -42,16 +42,6 @@
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Confirm Password</label>
-      <div class="control has-icons-left ">
-        <input class="input is-rounded" type="password"
-               placeholder="Password input"
-               name="confirm_password"
-               v-model="singup.confirm_password"
-               required>
-      </div>
-    </div>
 
     <div class="field">
       <div class="control">

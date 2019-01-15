@@ -4,7 +4,8 @@
   <div class="columns " >
     <div  class="column is-4 is-offset-4">
 
-  <h2 class="title has-text-centered">Welcome back!</h2>
+  <h2 class="title has-text-centered  has-text-success has-text-weight-bold ">Welcome back!</h2>
+
 
   <form method="post" @submit.prevent="login">
 
@@ -57,23 +58,36 @@
 </template>
 
 <script>
+import { mapActions ,mapMutations} from 'vuex'
+import axios from 'axios'
 export default {
   name: 'login',
   data () {
      return {
-       loginData: {}
+       loginData: {},
+       loginFailed: false
      }
   },
   methods: {
+
     // Collect and send user credentials to backend
-    login() {
-      //console.log(`login details ${JSON.stringify(this.loginData)}`)
-      this.$store.dispatch('LOGIN_REQUEST', this.loginData, { module: 'auth' })
-        .then(() => {
-          this.$router.push('/dashboard');
-        })
-        .catch(error => error);
-    }
+    async login() {
+      console.log(`calling axios with ${JSON.stringify(this.loginData)}`)
+      try {
+        this.loginFailed = false
+        this.changeLoadingState()
+        let user = await axios.post('http://127.0.0.1:5000/auth/login', this.loginData)
+        console.log(`user data ${JSON.stringify(user)}`)
+        this.loginUser(user.data.token)
+        this.$router.push('/dashboard')
+      }catch (e){
+        console.log(`login failed ${JSON.stringify(e)}`)
+        this.loginFailed = true
+      }
+
+    },
+    ...mapActions(['loginUser']),
+    ...mapMutations(['changeLoadingState'])
   }
 
 }
