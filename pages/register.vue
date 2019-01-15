@@ -68,21 +68,34 @@
 </template>
 
 <script>
+import { mapActions ,mapMutations} from 'vuex'
+import axios from 'axios'
 export default {
+
   name: 'Signup',
   data() {
     return {
       signup: {},
+      loginFailed: false
     };
   },
   methods: {
-    register() {
-      this.$store.dispatch('LOGIN_REQUEST', this.loginData, { module: 'auth' })
-        .then(() => {
-          this.$router.push('/login');
-        })
-        .catch(error => error);
-    }
+     async register() {
+      console.log(`calling axios with ${JSON.stringify(this.signup)}`)
+      try {
+        this.loginFailed = false
+        this.changeLoadingState()
+        let newUser = await axios.post('http://127.0.0.1:5000/auth/register', this.signup)
+        console.log(`user data ${JSON.stringify(newUser)}`)
+        // this.loginUser(newUser.data.token)
+        this.$router.push('/login')
+      }catch (e){
+        console.log(`login failed ${JSON.stringify(e)}`)
+        this.loginFailed = true
+      }
+
+    },
+    ...mapMutations(['changeLoadingState'])
   }
 }
 </script>
