@@ -4,7 +4,7 @@
     <div class="columns">
       <div class="column is-4 is-offset-4">
         <h2 class="title has-text-centered has-text-success has-text-weight-bold ">Register!</h2>
-
+    <p class="has-text-danger" variant="danger" v-show="loginFailed" dismissible>Sorry, something went wrong, please try again!.</p>
     <form @submit.prevent="register">
     <div class="field">
       <label class="label" :invalid-feedback="errors.first('business_name')" :state="!errors.has('business_name')">Business Name</label>
