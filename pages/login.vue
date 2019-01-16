@@ -6,17 +6,20 @@
 
   <h2 class="title has-text-centered  has-text-success has-text-weight-bold ">Welcome back!</h2>
 
-
+  <p class="has-text-danger" variant="danger" v-show="loginFailed" dismissible>Sorry, invalid email or password.</p>
   <form method="post" @submit.prevent="login">
 
     <div class="field">
-      <label class="label">Email</label>
+      <label class="label" :invalid-feedback="errors.first('email')" :state="!errors.has('email')">Email</label>
+      <span v-show="errors.has('email')" class="error has-text-danger">{{ errors.first('email') }}</span>
       <div class="control has-icons-left ">
         <input class="input is-rounded" type="email"
               placeholder="Email input"
               name="email"
               v-model="loginData.email"
-              required >
+              v-validate="'required|email'"
+              >
+
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
@@ -25,14 +28,16 @@
 
     <div class="field">
       <p class="control has-icons-left">
-      <label class="label">Password</label>
+      <label class="label" :invalid-feedback="errors.first('password')" :state="!errors.has('password')">Password</label>
+      <span v-show="errors.has('password')" class="error has-text-danger">{{ errors.first('password') }}</span>
       <div class="control">
         <input class="input is-rounded "
               type="password"
               placeholder="Password input"
               name="password"
               v-model="loginData.password"
-              required >
+              v-validate="'required'"
+               >
         <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>
         </span>
@@ -72,6 +77,11 @@ export default {
 
     // Collect and send user credentials to backend
     async login() {
+      await this.$validator.validateAll()
+      if (this.errors.any()) {
+        console.log('errors',JSON.stringify(this.errors))
+        return
+      }
       console.log(`calling axios with ${JSON.stringify(this.loginData)}`)
       try {
         this.loginFailed = false
