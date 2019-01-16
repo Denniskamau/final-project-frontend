@@ -7,24 +7,26 @@
 
     <form @submit.prevent="register">
     <div class="field">
-      <label class="label">Business Name</label>
+      <label class="label" :invalid-feedback="errors.first('business_name')" :state="!errors.has('business_name')">Business Name</label>
+      <span v-show="errors.has('business_name')" class="error has-text-danger">{{ errors.first('business_name') }}</span>
       <div class="control">
         <input class="input is-rounded" type="text"
               placeholder="Business name"
               name="business_name"
               v-model="signup.business_name"
-              required >
+              v-validate="'required|business_name'" >
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Email</label>
+      <label class="label" :invalid-feedback="errors.first('email')" :state="!errors.has('email')">Email</label>
+      <span v-show="errors.has('email')" class="error has-text-danger">{{ errors.first('email') }}</span>
       <div class="control has-icons-left ">
         <input class="input is-rounded " type="email"
                 placeholder="Email input"
                 v-model="signup.email"
                 name="email"
-                required >
+                v-validate="'required|email'" >
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
         </span>
@@ -32,13 +34,14 @@
     </div>
 
     <div class="field">
-      <label class="label">Password</label>
+      <label class="label" :invalid-feedback="errors.first('password')" :state="!errors.has('password')">Password</label>
+      <span v-show="errors.has('password')" class="error has-text-danger">{{ errors.first('password') }}</span>
       <div class="control has-icons-left ">
         <input class="input is-rounded" type="password"
                 placeholder="Password input"
                 name="password"
                 v-model="signup.password"
-                required >
+                v-validate="'required'">
       </div>
     </div>
 
@@ -81,6 +84,11 @@ export default {
   },
   methods: {
      async register() {
+      await this.$validator.validateAll()
+      if (this.errors.any()) {
+        console.log('errors',JSON.stringify(this.errors))
+        return
+      }
       console.log(`calling axios with ${JSON.stringify(this.signup)}`)
       try {
         this.loginFailed = false
