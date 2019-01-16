@@ -23,6 +23,7 @@ const mutations = {
 
   logoutMutation (state) {
     Vue.set(state, 'authenticated', false)
+    sessionStorage.removeItem('token')
   },
 
   changeLoadingState(state){

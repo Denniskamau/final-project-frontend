@@ -23,17 +23,27 @@
       </div>
     </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
+    <div class="navbar-end" v-if="isAuth">
+      <div class="navbar-item" >
+
+        <nuxt-link class="button is-info" to="/login" v-on:click.native="logout">
+            <strong>log out</strong>
+          </nuxt-link>
+      </div>
+    </div>
+  <div class="navbar-end" v-else>
+    <div >
+      <div class="navbar-item" >
           <nuxt-link class="button is-info" to="/register">
             <strong>sing up</strong>
           </nuxt-link>
       </div>
     </div>
 
-    <div class="navbar-end">
+  <div class="navbar-end">
       <div class="navbar-item">
           <nuxt-link class="button is-light" to="/login">Login</nuxt-link>
+      </div>
       </div>
     </div>
     </div>
@@ -41,8 +51,18 @@
 </template>
 
 <script>
+import { mapGetters ,mapMutations} from 'vuex'
 export default {
-
+  computed:{
+    ...mapGetters(['isAuth']),
+    ...mapMutations(['logoutMutation'])
+  },
+  methods: {
+    logout() {
+      // console.log('logout called')
+      this.logoutMutation()
+    }
+  }
 }
 </script>
 
