@@ -74,7 +74,7 @@
 import { mapActions ,mapMutations} from 'vuex'
 import axios from 'axios'
 export default {
-
+  //middleware: 'guest',
   name: 'Signup',
   data() {
     return {

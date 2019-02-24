@@ -6,11 +6,13 @@ Vue.use(Vuex)
 const state = {
   authenticated: false,
   loading: false,
+  token:''
 }
 
 const getters = {
   isAuth: state => state.authenticated,
-  isLoading: state => state.loading
+  isLoading: state => state.loading,
+  tokenValue: state => state.token
 }
 
 const mutations = {
@@ -19,11 +21,13 @@ const mutations = {
     Vue.set(state, 'authenticated', true)
     Vue.set(state, 'loading', false)
     sessionStorage.setItem('token',token)
+    Vue.set(state, 'token', token)
   },
 
   logoutMutation (state) {
     Vue.set(state, 'authenticated', false)
     sessionStorage.removeItem('token')
+    Vue.set(state, 'token', '')
   },
 
   changeLoadingState(state){
