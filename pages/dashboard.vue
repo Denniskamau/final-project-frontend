@@ -1,7 +1,18 @@
 <template>
+<div class="container is-fluid ">
+  <div class="column is-2 has-background-black-bis ">
+  <aside class="menu has-text-success" >
+    <p class="menu-label has-text-success">Dashboard</p>
+    <ul class="menu-list ">
+      <nuxt-link to="/dashboard" class="has-text-success">Search</nuxt-link>
+      <nuxt-link to="/analysis" class="has-text-success">Analysis</nuxt-link>
+    </ul>
+  </aside>
+  </div>
+  <div class="has-text-success has-background-black-bis">
   <section class="section">
     <div class="container">
-      <div class="column is-4 is-offset-4">
+      <div class="column is-4 is-offset-2">
       <form method="post" @submit.prevent="startStream">
       <p>Input search term to start analysis</p>
       <div class="field">
@@ -34,12 +45,14 @@
       </div>
     </div>
   </section>
+  </div>
+</div>
 </template>
 
 <script>
 import axios from 'axios'
 export default {
-  middleware: 'strict',
+  //middleware: 'strict',
   name: 'dashboard',
   data () {
     return {
