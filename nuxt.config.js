@@ -38,6 +38,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/validate'
   ],
 
   /*
@@ -48,6 +49,7 @@ module.exports = {
     '@nuxtjs/axios',
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
+    '@nuxtjs/auth'
 
   ],
   /*
@@ -61,7 +63,7 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/auth/login', method: 'post', propertyName: 'data.token' },
+          login: { url: '/auth/login', method: 'post'},
           //register: { url: '/auth/register', method: 'post', propertyName: 'data.token' },
           logout: false,
           user: false

@@ -17,7 +17,8 @@
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "express": "^4.16.3",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vee-validate": "^2.1.5"
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
