@@ -18,7 +18,6 @@
           <nuxt-link class="navbar-item" to="/services">Services</nuxt-link>
         </div>
       </div>
-
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
