@@ -1,20 +1,34 @@
 <template>
-  <div >
-    <Navbar/>
-    <nuxt />
-
+  <div id="app">
+    <nuxt/>
   </div>
 </template>
 
 <script>
-import Navbar from '~/components/Navbar'
-
 export default {
-  components: {
-    Navbar
-  }
-}
-</script>
-<style>
 
+};
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text');
+
+
+#app {
+  font-family: 'Nunito', sans-serif;
+}
+
+.is-display-font {
+  font-family: 'Libre Barcode 39 Text', cursive;
+}
+
+.is-styled-font {
+  font-family: 'Pacifico', cursive;
+  color: #009688;
+}
+
+.is-spaced {
+  margin: 15px;
+  padding: 15px;
+}
 </style>
