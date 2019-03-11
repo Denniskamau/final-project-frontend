@@ -1,18 +1,50 @@
 <template>
-<div class="container is-fluid ">
-  <div class="column is-2 has-background-black-bis ">
-  <aside class="menu has-text-success" >
-    <p class="menu-label has-text-success">Dashboard</p>
-    <ul class="menu-list ">
-      <nuxt-link to="/dashboard" class="has-text-success">Search</nuxt-link>
-      <nuxt-link to="/analysis" class="has-text-success">Analysis</nuxt-link>
-    </ul>
-  </aside>
+<div>
+<div class="main">
+   <section class="hero">
+    <div class="hero-head">
+        <Navbar />
+      </div>
+    <div class="hero-body">
+      <div class="container ">
+        <div class="columns">
+        <div class="column is-one-quarter">
+<aside class="menu">
+  <p class="menu-label">
+    General
+  </p>
+  <ul class="menu-list">
+    <li><a>Dashboard</a></li>
+    <li><a>Customers</a></li>
+  </ul>
+  <p class="menu-label">
+    Administration
+  </p>
+  <ul class="menu-list">
+    <li><a>Team Settings</a></li>
+    <li>
+      <a class="is-active">Manage Your Team</a>
+      <ul>
+        <li><a>Members</a></li>
+        <li><a>Plugins</a></li>
+        <li><a>Add a member</a></li>
+      </ul>
+    </li>
+    <li><a>Invitations</a></li>
+    <li><a>Cloud Storage Environment Settings</a></li>
+    <li><a>Authentication</a></li>
+  </ul>
+  <p class="menu-label">
+    Transactions
+  </p>
+  <ul class="menu-list">
+    <li><a>Payments</a></li>
+    <li><a>Transfers</a></li>
+    <li><a>Balance</a></li>
+  </ul>
+</aside>
   </div>
-  <div class="has-text-success has-background-black-bis">
-  <section class="section">
-    <div class="container">
-      <div class="column is-4 is-offset-2">
+<div class="column is-4 ">
       <form method="post" @submit.prevent="startStream">
       <p>Input search term to start analysis</p>
       <div class="field">
@@ -29,31 +61,24 @@
     </div>
       </form>
       </div>
-      <div>
-        <table class="table is-bordered is-striped is-narrow is-hoverable" v-if="finish">
-          <thead>
-            <tr>
-              <th>Positive text</th>
-              <th>Negative text</th>
-            </tr>
-          </thead>
-          <tbody v-for="res in results" :key="res">
-            <td v-if="res.message === 'Positive Sentiment'">{{res.tweet}}</td>
-            <td v-if="res.message === 'Negative Sentiment'">{{res.tweet}}</td>
-          </tbody>
-        </table>
+      </div>
       </div>
     </div>
-  </section>
-  </div>
+   </section>
+</div>
 </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import Navbar from '~/components/Navbar';
+
 export default {
   //middleware: 'strict',
   name: 'dashboard',
+    components: {
+    Navbar
+  },
   data () {
     return {
       search: {},
@@ -78,6 +103,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.main {
+  padding-top: 2%;
+}
+.sidebar {
+  padding-left: 0%;
+  padding-top: 2%;
+}
 </style>

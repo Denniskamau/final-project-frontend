@@ -34,9 +34,9 @@
                 <p class="is-styled-font title is-2">About Us</p>
                 <p class="is-display-font subtitle is-3">What is hisia</p>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, dignissimos ipsa corrupti obcaecati
-                  vel ad, iusto fuga esse molestias in odit blanditiis suscipit quibusdam. Velit repudiandae culpa
-                  corporis reprehenderit debitis.
+                  We bring the power of analysis to businesess by providing a platform that gives businesses the
+                  power to know beyond just what to provide to the consumers but how and where to provide these services.
+                  By a click of a button your business can be able to know how your consumers feel about your products.
                 </p>
               </div>
             </div>

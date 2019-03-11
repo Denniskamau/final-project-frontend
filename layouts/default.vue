@@ -31,4 +31,5 @@ export default {
   margin: 15px;
   padding: 15px;
 }
+
 </style>
