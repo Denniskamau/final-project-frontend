@@ -1,7 +1,7 @@
 <template>
+
   <div>
     <h2>Bar</h2>
-
     <div class="card">
       <canvas id="fooCanvas" count="2" />
 
@@ -19,29 +19,54 @@
       />
     </div>
   </div>
+
 </template>
 
 <script>
 export default {
   data() {
     return {
+      results: {},
       beginZero: true,
-      labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      labels: ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh"],
       types: [
         {
           bgColor: "#ff80ab",
           borderColor: "#e91e63",
-          data: [1, 3, 5, 7, 2, 4, 6],
-          dataLabel: "Bar"
+          data: [],
+          dataLabel: "Positive"
         },
         {
           bgColor: "#ea80fc",
           borderColor: "#9c27b0",
-          data: [1, 5, 2, 6, 3, 7, 4],
-          dataLabel: "Baz"
+          data: [],
+          dataLabel: "Negative"
         }
       ]
     };
+  },
+  beforeMount(){
+    this.results = this.$store.state.data.data
+    this.populateBarGraph()
+  },
+  methods: {
+    populateBarGraph(){
+      var dataset = this.results
+      var posData= []
+      var negData = []
+      var slicedPos = []
+      var slicedNeg = []
+      for( let i=0; i< this.results.length; i++) {
+        posData.push(this.results[i].percentage.pos)
+        negData.push(this.results[i].percentage.neg)
+      }
+      slicedPos.push(posData.slice(-7));
+      slicedNeg.push(negData.slice(-7));
+      this.types[0].data = slicedPos;
+      this.types[1].data = slicedNeg;
+      console.log('positive types:'+ this.types[0].data)
+      console.log('negative types:'+ this.types[1].data)
+    }
   }
 };
 </script>
