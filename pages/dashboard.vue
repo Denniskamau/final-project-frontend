@@ -6,7 +6,7 @@
         <Navbar />
       </div>
     <div class="hero-body">
-      <div class="container ">
+      <div class="container">
         <div class="columns">
         <div class="column is-one-quarter">
 <!-- Sidebar -->
@@ -118,6 +118,7 @@ export default {
         let resp = await axios.post('http://127.0.0.1:5000/stream', this.search)
         this.results = resp.data
         this.finish = true
+        this.$store.commit('data/add', this.results)
       }catch (e){
         return e
       }
@@ -129,8 +130,9 @@ export default {
 
 <style scoped>
 .menu {
-  margin-top: 10%;
-  padding: 5%;
+  margin-top: 5%;
+  margin-left: 2%;
+
 }
 .card {
   margin-top:10%;

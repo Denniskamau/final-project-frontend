@@ -39,7 +39,8 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/validate'
+    '~/plugins/validate',
+    { src: "~/plugins/chart", ssr: false }
   ],
 
   /*
