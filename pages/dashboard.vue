@@ -9,44 +9,26 @@
       <div class="container ">
         <div class="columns">
         <div class="column is-one-quarter">
-<aside class="menu">
-  <p class="menu-label">
-    General
-  </p>
-  <ul class="menu-list">
-    <li><a>Dashboard</a></li>
-    <li><a>Customers</a></li>
-  </ul>
-  <p class="menu-label">
-    Administration
-  </p>
-  <ul class="menu-list">
-    <li><a>Team Settings</a></li>
-    <li>
-      <a class="is-active">Manage Your Team</a>
-      <ul>
-        <li><a>Members</a></li>
-        <li><a>Plugins</a></li>
-        <li><a>Add a member</a></li>
-      </ul>
-    </li>
-    <li><a>Invitations</a></li>
-    <li><a>Cloud Storage Environment Settings</a></li>
-    <li><a>Authentication</a></li>
-  </ul>
-  <p class="menu-label">
-    Transactions
-  </p>
-  <ul class="menu-list">
-    <li><a>Payments</a></li>
-    <li><a>Transfers</a></li>
-    <li><a>Balance</a></li>
-  </ul>
-</aside>
+<!-- Sidebar -->
+<Sidebar />
   </div>
-<div class="column is-4 ">
+<div class="column is-6 ">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title">Instructions</p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+          <p>1)Input search term and press search to start analysis</p>
+          <p>2)This will stream in social media data with the seach term you provided</p>
+          <p>3)Analysis will be carried out and the results displaysed in a table format below.</p>
+          <br>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
       <form method="post" @submit.prevent="startStream">
-      <p>Input search term to start analysis</p>
       <div class="field">
         <input class="input is-rounded" type="text"
         placeholder="Input text"
@@ -60,6 +42,42 @@
         </div>
     </div>
       </form>
+      <br>
+      <br>
+      <table class="table is-bordered is-striped" v-if="finish">
+        <thead>
+          <tr>
+            <th>Text</th>
+            <th>Analysis</th>
+            <th>Percentage</th>
+          </tr>
+        </thead>
+
+        <tbody v-for="data in results" :key="data">
+          <td>
+            {{data.tweet}}
+            </td>
+          <td>
+            <span class="tag is-light is-medium">{{data.message}}</span>
+            </td>
+          <td>
+            <span class="tag is-info is-medium">{{data.percentage}}</span>
+            </td>
+        </tbody>
+      </table>
+      </div>
+      <div class="column is-6 " >
+      <div class="tile is-ancestor">
+        <div class="tile is-6 is-vertical is-parent">
+          <div class="tile is-child box">
+             <p class="title">Your Search Terms</p>
+              <ul v-for="word in searchWords" :key="word">
+                <li>{{word.query}}</li>
+              </ul>
+
+          </div>
+        </div>
+      </div>
       </div>
       </div>
       </div>
@@ -72,28 +90,34 @@
 <script>
 import axios from 'axios';
 import Navbar from '~/components/Navbar';
+import Sidebar from '~/components/Sidebar'
 
 export default {
   //middleware: 'strict',
   name: 'dashboard',
     components: {
-    Navbar
+    Navbar,
+    Sidebar
   },
   data () {
     return {
       search: {},
       results: {},
-      finish:false
+      finish:false,
+      searchWords: []
     }
   },
   methods: {
+    searchParameters() {
+        var word = this.search
+        this.searchWords.push(word);
+    },
     // start streaming data
     async startStream() {
       try {
         let resp = await axios.post('http://127.0.0.1:5000/stream', this.search)
         this.results = resp.data
         this.finish = true
-        console.log(`response ${JSON.stringify(this.results)}`)
       }catch (e){
         return e
       }
@@ -104,11 +128,15 @@ export default {
 </script>
 
 <style scoped>
-.main {
-  padding-top: 2%;
+.menu {
+  margin-top: 10%;
+  padding: 5%;
 }
-.sidebar {
-  padding-left: 0%;
-  padding-top: 2%;
+.card {
+  margin-top:10%;
+  background-color: #009688;
+}
+.tile {
+  margin-top: 5%;
 }
 </style>
