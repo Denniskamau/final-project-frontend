@@ -10,6 +10,26 @@
             <div class="column is-one-quarter">
             <Sidebar />
             </div>
+            <div class=" mail column is-6">
+              <p>Input email address in the field below and click send to receive report</p>
+              <br>
+            <form method="post" @submit.prevent="sendReport">
+              <div class="field column is-5">
+              <input class="input is-rounded" type="text"
+                placeholder="Input email"
+                name="email"
+
+                v-model="data.email"
+                >
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-link is-rounded">Send</button>
+        </div>
+    </div>
+      </form>
+            </div>
+
           </div>
         </div>
       </div>
@@ -28,6 +48,16 @@ export default {
     Navbar,
     Sidebar
   },
+  data () {
+    return {
+      data: {},
+    }
+  },
+  methods: {
+    sendReport() {
+
+    }
+  }
 }
 </script>
 
@@ -37,4 +67,8 @@ export default {
   margin-left: 2%;
 
 }
+.mail {
+  margin-top: 10%
+}
+
 </style>

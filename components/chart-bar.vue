@@ -1,7 +1,7 @@
 <template>
-
   <div>
     <h2>Bar</h2>
+
     <div class="card">
       <canvas id="fooCanvas" count="2" />
 
@@ -19,28 +19,26 @@
       />
     </div>
   </div>
-
 </template>
 
 <script>
 export default {
   data() {
     return {
-      results: {},
       beginZero: true,
-      labels: ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh"],
+      labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
       types: [
         {
           bgColor: "#ff80ab",
           borderColor: "#e91e63",
-          data: [],
-          dataLabel: "Positive"
+          data: [2,4,0,5,2,4,6],
+          dataLabel: "Bar"
         },
         {
           bgColor: "#ea80fc",
           borderColor: "#9c27b0",
-          data: [],
-          dataLabel: "Negative"
+          data: [4,9,5,2,5,7,3],
+          dataLabel: "Baz"
         }
       ]
     };
