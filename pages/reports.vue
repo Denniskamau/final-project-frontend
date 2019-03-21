@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Navbar from '~/components/Navbar';
 import Sidebar from '~/components/Sidebar'
 
@@ -50,12 +51,28 @@ export default {
   },
   data () {
     return {
-      data: {},
+      data: {
+        email:"",
+        results: {
+          analysis:[]
+        },
+        message: ''
+      },
     }
   },
   methods: {
-    sendReport() {
-
+    async sendReport() {
+      var analysisData = this.$store.state.data.data
+      console.log('analysis data'+ JSON.stringify(analysisData))
+      this.data.results.analysis = analysisData
+      try {
+        console.log('sending data'+JSON.stringify(this.data))
+        let resp = await axios.post('http://127.0.0.1:5000/mail', this.data)
+        this.message = resp.data
+        console.log('message'+ this.message)
+      }catch (e){
+        return e
+      }
     }
   }
 }
