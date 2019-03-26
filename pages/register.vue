@@ -7,14 +7,14 @@
     <p class="has-text-danger" variant="danger" v-show="loginFailed" dismissible>Sorry, something went wrong, please try again!.</p>
     <form @submit.prevent="register">
     <div class="field">
-      <label class="label" :invalid-feedback="errors.first('business_name')" :state="!errors.has('business_name')">Business Name</label>
-      <span v-show="errors.has('business_name')" class="error has-text-danger">{{ errors.first('business_name') }}</span>
+      <label class="label" :invalid-feedback="errors.first('business name')" :state="!errors.has('business name')">Business Name</label>
+      <span v-show="errors.has('business name')" class="error has-text-danger">{{ errors.first('business name') }}</span>
       <div class="control">
         <input class="input is-rounded" type="text"
               placeholder="Business name"
-              name="business_name"
+              name="business name"
               v-model="signup.business_name"
-              v-validate="'required|business_name'" >
+              v-validate="'required'" >
       </div>
     </div>
 
@@ -92,7 +92,6 @@ export default {
       console.log(`calling axios with ${JSON.stringify(this.signup)}`)
       try {
         this.loginFailed = false
-        this.changeLoadingState()
         let newUser = await axios.post('http://127.0.0.1:5000/auth/register', this.signup)
         console.log(`user data ${JSON.stringify(newUser)}`)
         // this.loginUser(newUser.data.token)
@@ -103,7 +102,7 @@ export default {
       }
 
     },
-    ...mapMutations(['changeLoadingState'])
+
   }
 }
 </script>

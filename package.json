@@ -20,7 +20,8 @@
     "express": "^4.16.3",
     "hchs-vue-charts": "^1.2.8",
     "nuxt": "^2.0.0",
-    "vee-validate": "^2.1.5"
+    "vee-validate": "^2.1.5",
+    "vue2-google-maps": "^0.10.6"
   },
   "devDependencies": {
     "eslint-config-prettier": "^3.1.0",

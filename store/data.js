@@ -7,3 +7,9 @@ export const mutations = {
     state.data = data;
   }
 }
+
+export const actions = {
+  sendMail(payload){
+    
+  }
+}

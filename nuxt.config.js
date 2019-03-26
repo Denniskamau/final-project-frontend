@@ -41,6 +41,7 @@ module.exports = {
   plugins: [
     '~/plugins/validate',
     { src: "~/plugins/chart", ssr: false }
+
   ],
 
   /*
@@ -93,6 +94,6 @@ module.exports = {
     */
     extend(config, ctx) {
 
-    }
+    },
   }
 }

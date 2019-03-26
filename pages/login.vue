@@ -75,7 +75,6 @@ export default {
      }
   },
   methods: {
-
     // Collect and send user credentials to backend
     async login() {
       await this.$validator.validateAll()
@@ -86,24 +85,20 @@ export default {
       console.log(`calling axios with ${JSON.stringify(this.loginData)}`)
       try {
         this.loginFailed = false
-        this.changeLoadingState()
+
         let user = await axios.post('http://127.0.0.1:5000/auth/login', this.loginData)
         console.log(`user data ${JSON.stringify(user)}`)
-        this.loginUser(user.data.token)
+
+        this.$store.commit('authentication/setAthenticatedTrue', user.data)
         this.$router.push('/dashboard')
       }catch (e){
         console.log(`login failed ${JSON.stringify(e)}`)
         this.loginFailed = true
       }
-
     },
-    ...mapActions(['loginUser']),
-    ...mapMutations(['changeLoadingState'])
   }
-
 }
 </script>
 
 <style >
-
 </style>

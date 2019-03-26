@@ -10,6 +10,8 @@
             <div class="column is-one-quarter">
             <Sidebar />
             </div>
+            <div class=" mail column is-6">
+            </div>
           </div>
         </div>
       </div>
@@ -28,6 +30,15 @@ export default {
     Navbar,
     Sidebar
   },
+  data () {
+    return {
+      mapimg: ''
+    }
+  },
+
+  methods: {
+
+  }
 }
 </script>
 
