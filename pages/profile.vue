@@ -1,15 +1,19 @@
 <template>
   <section class="section">
     <div class="container">
+      <Navbar />
       <h2 class="title">My Profile</h2>
       <div class="content">
         <p>
-          <strong>Username:</strong>
-          {{ loggedInUser.username }}
+          <strong>Business Name:</strong>
+          {{ prof.business }}
         </p>
         <p>
           <strong>Email:</strong>
-          {{ loggedInUser.email }}
+          {{ prof.user }}
+        </p>
+        <p>Back To Dashboard
+           <nuxt-link to="/dashboard">Click Me!! </nuxt-link>
         </p>
       </div>
     </div>
@@ -17,12 +21,27 @@
 </template>
 
 <script>
+import Navbar from '~/components/Navbar';
 import { mapGetters } from 'vuex'
 
 export default {
   middleware: 'auth',
+  components: {
+    Navbar,
+  },
   computed: {
-    ...mapGetters(['loggedInUser'])
-  }
+    ...mapGetters({
+      auth: 'authentication/isAuthenticated',
+      prof: 'authentication/getUser'
+    })
+  },
 }
 </script>
+<style>
+.title {
+  margin-top: 5%
+}
+.content {
+  margin-top: 1%
+}
+</style>

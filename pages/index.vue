@@ -95,7 +95,7 @@
                 </div>
                 <div class="column has-text-centered">
                   <div class="content has-text-justified has-text-weight-bold">
-                    <p class="is-styled-font title is-2">About Us</p>
+                    <p class="is-styled-font title is-2">Contact Us</p>
                     <p class="is-display-font subtitle is-3">What is hisia</p>
                     <p>
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, dignissimos ipsa corrupti

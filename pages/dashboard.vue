@@ -71,8 +71,8 @@
         <div class="tile is-6 is-vertical is-parent">
           <div class="tile is-child box">
              <p class="title">Your Search Terms</p>
-              <ul v-for="word in searchWords" :key="word">
-                <li>{{word.query}}</li>
+              <ul v-for="item in word" :key="item">
+                <li>{{item.query}}</li>
               </ul>
 
           </div>
@@ -91,6 +91,7 @@
 import axios from 'axios';
 import Navbar from '~/components/Navbar';
 import Sidebar from '~/components/Sidebar'
+import { mapGetters } from 'vuex'
 
 export default {
   //middleware: 'strict',
@@ -107,17 +108,27 @@ export default {
       searchWords: []
     }
   },
+  computed: {
+    // auth() {
+    //   return this.$store.getters.isAuthenticated
+    // }
+    ...mapGetters({
+      word: 'data/getSearchTerms',
+    })
+  },
   methods: {
     searchParameters() {
         var word = this.search
         this.searchWords.push(word);
     },
+
     // start streaming data
     async startStream() {
       try {
         let resp = await axios.post('http://127.0.0.1:5000/stream', this.search)
         this.results = resp.data
         this.finish = true
+        this.$store.commit('data/addSearchTerms',this.search)
         this.$store.commit('data/add', this.results)
       }catch (e){
         return e

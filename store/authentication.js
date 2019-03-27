@@ -8,6 +8,11 @@ export const mutations = {
     state.isAuthenticated = true;
     localStorage.setItem('token', payload.token)
     state.user = payload
+  },
+  setAuthenticatedFalse(state){
+    state.isAuthenticated = false;
+    localStorage.clear()
+    state.user = {}
   }
 }
 

@@ -13,22 +13,21 @@
       </div>
       <div id="navbarMenus" class="navbar-menu">
         <div class="navbar-start">
-          <nuxt-link class="navbar-item" to="/">Home</nuxt-link>
+          <nuxt-link class="navbar-item " to="/">Home</nuxt-link>
           <nuxt-link class="navbar-item" to="/price">Pricing</nuxt-link>
-          <nuxt-link class="navbar-item" to="/services">Services</nuxt-link>
         </div>
       </div>
       <div class="mavbar-menu">
       <div class="navbar-end">
-{{auth}}
         <div class="navbar-item has-dropdown is-hoverable" v-if="auth">
           <a class="navbar-link">
             <!-- User name -->
+            {{prof.business}}
           </a>
           <div class="navbar-dropdown">
               <nuxt-link class="navbar-item" to="/profile">My Profile</nuxt-link>
               <hr class="navbar-divider">
-              <a class="navbar-item">Logout</a>
+              <a class="navbar-item" @click="logout">Logout</a>
             </div>
         </div>
         <template v-else>
@@ -51,8 +50,18 @@ export default {
     //   return this.$store.getters.isAuthenticated
     // }
     ...mapGetters({
-      auth: 'authentication/isAuthenticated'
+      auth: 'authentication/isAuthenticated',
+      prof: 'authentication/getUser'
     })
+  },
+  methods :{
+    logout() {
+      this.$store.commit('authentication/setAuthenticatedFalse')
+        .then(() => {
+          this.$router.push('/')
+        })
+
+    }
   }
 };
 </script>
