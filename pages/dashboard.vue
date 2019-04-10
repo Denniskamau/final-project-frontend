@@ -52,8 +52,7 @@
             <th>Percentage</th>
           </tr>
         </thead>
-
-        <tbody v-for="data in results" :key="data">
+        <tbody v-for="(data,index) in results" :key="index">
           <td>
             {{data.tweet}}
             </td>
@@ -71,7 +70,7 @@
         <div class="tile is-6 is-vertical is-parent">
           <div class="tile is-child box">
              <p class="title">Your Search Terms</p>
-              <ul v-for="item in word" :key="item">
+              <ul v-for="(item,index) in word" :key="index">
                 <li>{{item.query}}</li>
               </ul>
 
@@ -109,9 +108,10 @@ export default {
     }
   },
   computed: {
-    // auth() {
-    //   return this.$store.getters.isAuthenticated
-    // }
+    getData(){
+      console.log('getting data')
+      this.results = this.$store.getters('data/getData')
+    },
     ...mapGetters({
       word: 'data/getSearchTerms',
     })
