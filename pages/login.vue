@@ -89,7 +89,7 @@ export default {
         let user = await axios.post('http://127.0.0.1:5000/auth/login', this.loginData)
         console.log(`user data ${JSON.stringify(user)}`)
 
-        this.$store.commit('authentication/setAthenticatedTrue', user.data)
+        this.$store.dispatch('authentication/setAthenticatedTrue', user.data)
         this.$router.push('/dashboard')
       }catch (e){
         console.log(`login failed ${JSON.stringify(e)}`)

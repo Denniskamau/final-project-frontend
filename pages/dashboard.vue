@@ -94,7 +94,7 @@ import Sidebar from '~/components/Sidebar'
 import { mapGetters } from 'vuex'
 
 export default {
-  //middleware: 'strict',
+  middleware: 'strict',
   name: 'dashboard',
     components: {
     Navbar,
@@ -128,8 +128,8 @@ export default {
         let resp = await axios.post('http://127.0.0.1:5000/stream', this.search)
         this.results = resp.data
         this.finish = true
-        this.$store.commit('data/addSearchTerms',this.search)
-        this.$store.commit('data/add', this.results)
+        this.$store.dispatch('data/addSearchTerms',this.search)
+        this.$store.dispatch('data/addStateData', this.results)
       }catch (e){
         return e
       }

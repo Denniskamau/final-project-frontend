@@ -6,7 +6,7 @@
   <ul class="menu-list">
     <li><nuxt-link to="/dashboard">Search</nuxt-link></li>
     <li><nuxt-link to="/graphs">Graphs</nuxt-link></li>
-    <li><nuxt-link to="/maps">Maps</nuxt-link></li>
+    <!-- <li><nuxt-link to="/maps">Maps</nuxt-link></li> -->
   </ul>
   <p class="menu-label">
     Administration

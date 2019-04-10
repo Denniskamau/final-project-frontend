@@ -1,8 +1,8 @@
 export default function ({ store, redirect }) {
-  // use store.getters.isAuth ...
-//var value = store.getters.isAuth
-//console.log('value ', value)
-  if (!store.getters.isAuth) {
+  //use store.getters.isAuthenticated ...
+  var value = store.getters['authentication/isAuthenticated']
+  console.log('value ', value)
+  if (!value) {
     return redirect('/login')
   }
 }

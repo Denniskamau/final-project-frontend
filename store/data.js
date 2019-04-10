@@ -15,11 +15,17 @@ export const mutations = {
 export const getters = {
   getSearchTerms(state){
     return state.searchTerms
+  },
+  getData(state){
+    return state.data
   }
 }
 
 export const actions = {
-  sendMail(payload){
-
+  addStateData({commit},payload) {
+    commit('add', payload);
+  },
+  addSearchTerms({commit}, payload) {
+    commit('addSearchTerms', payload);
   }
 }

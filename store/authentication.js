@@ -26,7 +26,7 @@ export const getters = {
 }
 
 export const actions = {
-  sendMail(payload){
-
+  setAthenticatedTrue({commit},payload){
+    commit('setAthenticatedTrue',payload)
   }
 }
