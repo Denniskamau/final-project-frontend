@@ -34,7 +34,7 @@
         <input class="input is-rounded" type="text"
         placeholder="Input text"
         name="search"
-        v-model="search.query"
+        v-model="tafuta.query"
         >
       </div>
       <div class="field is-grouped">
@@ -106,10 +106,12 @@ export default {
   },
   data () {
     return {
-      search: {},
+      search: {
+        query:''
+      },
+      tafuta:{},
       results: {},
       finish:false,
-      searchWords: [],
       length:0,
       start:false,
       message:'Starting Streaming Data... '
@@ -124,24 +126,26 @@ export default {
     },
     ...mapGetters({
       word: 'data/getSearchTerms',
-      sentiment: 'data/getData'
+      //sentiment: 'data/getData'
     })
   },
   methods: {
-    searchParameters() {
-        var word = this.search
-        this.searchWords.push(word);
-    },
+    // searchParameters() {
+    //     var word = this.search
+    //     this.searchWords.push(word);
+    // },
 
     // start streaming data
     async startStream() {
       try {
         this.start = true
-        let resp = await axios.post('http://127.0.0.1:5000/stream', this.search)
+        //this.search = this.tafuta
+        let resp = await axios.post('http://127.0.0.1:5000/stream', this.tafuta)
         this.results = resp.data
         this.length= this.results.length
         this.finish = true
-        this.$store.dispatch('data/addSearchTerms',this.search)
+        let data = this.search
+        this.$store.dispatch('data/addSearchTerms',data)
         this.$store.dispatch('data/addStateData', this.results)
         this.start = false
       }catch (e){

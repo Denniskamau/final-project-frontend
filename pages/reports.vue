@@ -15,12 +15,15 @@
               <br>
             <form method="post" @submit.prevent="sendReport">
               <div class="field column is-5">
-              <input class="input is-rounded" type="text"
+              <label class="label" :invalid-feedback="errors.first('email')" :state="!errors.has('email')">Email</label>
+              <span v-show="errors.has('email')" class="error has-text-danger">{{ errors.first('email') }}</span>
+              <input class="input is-rounded" type="email"
                 placeholder="Input email"
                 name="email"
-
+                v-validate="'required|email'"
                 v-model="data.email"
                 >
+
       </div>
       <div class="field is-grouped">
         <div class="control">
