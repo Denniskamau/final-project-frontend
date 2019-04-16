@@ -22,6 +22,7 @@
           <p>1)Input search term and press search to start analysis</p>
           <p>2)This will stream in social media data with the seach term you provided</p>
           <p>3)Analysis will be carried out and the results displaysed in a table format below.</p>
+
           <br>
       </div>
     </div>
@@ -39,11 +40,14 @@
       <div class="field is-grouped">
         <div class="control">
             <button class="button is-link is-rounded">Search</button>
+            <p  class="has-text-success" v-show="start">{{ message }}</p>
         </div>
     </div>
+
       </form>
       <br>
       <br>
+      <p v-if="finish">Analysis for the first {{length}} tweets</p>
       <table class="table is-bordered is-striped" v-if="finish">
         <thead>
           <tr>
@@ -57,7 +61,7 @@
             {{data.tweet}}
             </td>
           <td>
-            <span class="tag is-light is-medium">{{data.message}}</span>
+            <span class="tag has-background-success is-medium">{{data.message}}</span>
             </td>
           <td>
             <span class="tag is-info is-medium">{{data.percentage}}</span>
@@ -71,7 +75,7 @@
           <div class="tile is-child box">
              <p class="title">Your Search Terms</p>
               <ul v-for="(item,index) in word" :key="index">
-                <li>{{item.query}}</li>
+                <li >{{item.query}}</li>
               </ul>
 
           </div>
@@ -97,23 +101,30 @@ export default {
   name: 'dashboard',
     components: {
     Navbar,
-    Sidebar
+    Sidebar,
+
   },
   data () {
     return {
       search: {},
       results: {},
       finish:false,
-      searchWords: []
+      searchWords: [],
+      length:0,
+      start:false,
+      message:'Starting Streaming Data... '
     }
   },
-  computed: {
+  computed : {
     getData(){
       console.log('getting data')
       this.results = this.$store.getters('data/getData')
+      this.length = this.results.length()
+      this.finish = true
     },
     ...mapGetters({
       word: 'data/getSearchTerms',
+      sentiment: 'data/getData'
     })
   },
   methods: {
@@ -125,11 +136,14 @@ export default {
     // start streaming data
     async startStream() {
       try {
+        this.start = true
         let resp = await axios.post('http://127.0.0.1:5000/stream', this.search)
         this.results = resp.data
+        this.length= this.results.length
         this.finish = true
         this.$store.dispatch('data/addSearchTerms',this.search)
         this.$store.dispatch('data/addStateData', this.results)
+        this.start = false
       }catch (e){
         return e
       }

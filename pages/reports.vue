@@ -56,20 +56,23 @@ export default {
         results: {
           analysis:[]
         },
-        message: ''
+        sent:false,
+        delivered:false,
       },
     }
   },
   methods: {
     async sendReport() {
+      this.sent = true;
+      console.log('sent value', this.sent)
       var analysisData = this.$store.state.data.data
-      console.log('analysis data'+ JSON.stringify(analysisData))
+      //console.log('analysis data'+ JSON.stringify(analysisData))
       this.data.results.analysis = analysisData
       try {
-        console.log('sending data'+JSON.stringify(this.data))
+        //console.log('sending data'+JSON.stringify(this.data))
         let resp = await axios.post('http://127.0.0.1:5000/mail', this.data)
-        this.message = resp.data
-        console.log('message'+ this.message)
+        this.sent = false;
+        this.delivered = true;
       }catch (e){
         return e
       }

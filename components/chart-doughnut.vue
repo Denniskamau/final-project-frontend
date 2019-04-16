@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Doughnut</h2>
+    <h2>Data Visualization</h2>
     <div class="card" >
       <chartjs-doughnut
         v-bind:bind="true"

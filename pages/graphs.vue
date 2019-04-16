@@ -10,11 +10,12 @@
             <div class="column is-one-quarter">
             <Sidebar />
             </div>
-            <div class="column is-6">
+            <div class="column is-6 graph">
+
               <ChartDoughnut />
               <br>
               <br>
-              <ChartBar />
+              <!-- <ChartBar /> -->
             </div>
           </div>
         </div>
@@ -29,12 +30,13 @@ import Navbar from '~/components/Navbar';
 import Sidebar from '~/components/Sidebar';
 import ChartDoughnut from "~/components/chart-doughnut";
 import ChartBar from "~/components/chart-bar";
-
+import Bar from "~/components/bar";
 export default {
  name: 'analysis',
   components: {
     Navbar,
     Sidebar,
+    Bar,
     ChartBar,
     ChartDoughnut
   },
@@ -50,5 +52,8 @@ export default {
 .grid {
   display: grid;
   row-gap: 2rem;
+}
+.graph {
+  margin-top: 10%;
 }
 </style>
