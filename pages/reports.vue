@@ -55,6 +55,7 @@ export default {
   data () {
     return {
       data: {
+        tuma:false,
         email:"",
         results: {
           analysis:[]
@@ -66,7 +67,7 @@ export default {
   },
   methods: {
     async sendReport() {
-      this.sent = true;
+     // this.tuma = true;
       console.log('sent value', this.sent)
       var analysisData = this.$store.state.data.data
       //console.log('analysis data'+ JSON.stringify(analysisData))
@@ -74,8 +75,8 @@ export default {
       try {
         //console.log('sending data'+JSON.stringify(this.data))
         let resp = await axios.post('http://127.0.0.1:5000/mail', this.data)
-        this.sent = false;
-        this.delivered = true;
+        //this.sent = false;
+       // this.delivered = true;
       }catch (e){
         return e
       }
