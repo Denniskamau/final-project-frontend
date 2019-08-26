@@ -98,7 +98,7 @@ module.exports = {
     config.module.rules.push({
     enforce: 'pre',
     test: /\.(js|vue)$/,
-    loader: 'eslint-loader',
+    loader: 'css-loader',
     exclude: /(node_modules)/
     })
     }
