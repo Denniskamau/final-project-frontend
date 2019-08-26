@@ -21,7 +21,8 @@
     "hchs-vue-charts": "^1.2.8",
     "nuxt": "^2.0.0",
     "vee-validate": "^2.1.5",
-    "vue2-google-maps": "^0.10.6"
+    "vue2-google-maps": "^0.10.6",
+    "css-loader": "^2.1.1"
   },
   "devDependencies": {
     "css-loader": "^2.1.1",
