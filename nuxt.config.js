@@ -52,7 +52,8 @@ module.exports = {
     '@nuxtjs/axios',
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+
 
   ],
   /*
@@ -81,19 +82,31 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    extractCSS: true,
-    // postcss: {
-    //   preset: {
-    //     features: {
-    //       customProperties: false
-    //     }
-    //   }
-    // },
+    extractCSS: false,
+    postcss: {
+      preset: {
+        features: {
+          customProperties: false
+        }
+      }
+    },
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-
-    },
+   extend (config, { isDev, isClient }) {
+    if (isDev && isClient) {
+      config.module.rules.push({
+        test: /\.(js|vue)$/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/
+      });
+      config.module.rules.push({
+        test: /\.css$/,
+        loader: ['css-loader', 'stylus-loader'],
+        exclude: /(node_modules)/
+      });
+    }
   }
+}
 }
