@@ -82,7 +82,8 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    // extractCSS: false,
+    extractCSS: false,
+    cssSourceMap: false,
     // postcss: {
     //   preset: {
     //     features: {
