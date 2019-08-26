@@ -82,14 +82,14 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    extractCSS: false,
-    postcss: {
-      preset: {
-        features: {
-          customProperties: false
-        }
-      }
-    },
+    // extractCSS: false,
+    // postcss: {
+    //   preset: {
+    //     features: {
+    //       customProperties: false
+    //     }
+    //   }
+    // },
     /*
     ** You can extend webpack config here
     */
